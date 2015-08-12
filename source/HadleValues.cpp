@@ -24,7 +24,7 @@ void HandleValues::Update(){
 		money_add = 0;
 		money++;
 	}
-	//if(money > bankcount * 100)
+	if(money > this->MoneyCap())
 		money = bankcount * 100;
 	if(clock > 1){
 	clock = 0;
@@ -71,7 +71,7 @@ void HandleValues::Change(int var, sf::Vector2i pos, int val){
 			owner[pos.x][pos.y] = val;
 			break;
 		case 1:
-			if(owner[pos.x][pos.y] != 0 or building[pos.x][pos.y] != -1 or money < (buildcount * 3)*(buildcount + 1))
+			if(owner[pos.x][pos.y] != 0 or building[pos.x][pos.y] != -1 or money < this->BuildingPrice())
 				break;
 			money -= (buildcount * 3)*(buildcount + 1);
 			building[pos.x][pos.y] = val;
